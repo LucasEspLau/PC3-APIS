@@ -57,16 +57,13 @@ namespace pc3.Controllers
                 // Verificar si la creación del usuario fue exitosa
                 if (response != null)
                 {
-                    // Mostrar mensaje de confirmación y los detalles del usuario creado
+                    // Mostrar mensaje de confirmación
                     TempData["SuccessMessage"] = "Usuario creado correctamente.";
-                    TempData["CreatedUser"] = response;
-                    return RedirectToAction("Index");
                 }
                 else
                 {
                     // Manejar el caso en que la creación del usuario no fue exitosa
                     ModelState.AddModelError("", "Error al crear el usuario");
-                    return View();
                 }
             }
             catch (Exception ex)
@@ -74,9 +71,12 @@ namespace pc3.Controllers
                 // Manejar cualquier excepción que pueda ocurrir durante la creación del usuario
                 _logger.LogError($"Error al crear el usuario: {ex.Message}");
                 ModelState.AddModelError("", "Error al crear el usuario");
-                return View();
             }
+            
+            // Redireccionar a la acción Index
+            return View();
         }
+
 
 
 

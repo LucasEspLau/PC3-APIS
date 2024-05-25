@@ -4,6 +4,13 @@
 
 <h1>Crear Nuevo Usuario</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successMessage" class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <form asp-action="Create" method="post">
     <div class="form-group">
         <label for="name">Nombre:</label>
@@ -15,3 +22,12 @@
     </div>
     <button type="submit" class="btn btn-primary">Crear Usuario</button>
 </form>
+
+@section Scripts {
+    <script>
+        // Ocultar el mensaje de éxito después de 3 segundos
+        setTimeout(function() {
+            document.getElementById('successMessage').style.display = 'none';
+        }, 1000);
+    </script>
+}
