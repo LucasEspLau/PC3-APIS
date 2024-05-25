@@ -24,8 +24,8 @@ namespace pc3.Integration
         public async Task<Usuario> GetAllUser(int Id)
         {
 
-            string requestUrl = API_URL;
-            Usuario listado = new Usuario();
+            string requestUrl =  $"{API_URL}{Id}";
+            Usuario usuario = new Usuario();
             try
             {
                 HttpResponseMessage response = await httpClient.GetAsync(requestUrl);
@@ -37,7 +37,7 @@ namespace pc3.Integration
             catch(Exception ex){
                 _logger.LogDebug($"Error al llamar a la API: {ex.Message}");
             }
-            return listado;
+            return usuario;
 
         }
     }
