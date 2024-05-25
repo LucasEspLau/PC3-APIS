@@ -29,21 +29,17 @@ namespace pc3.Integration
             ApiResponse apiResponse = null;
             try
             {
-                // Construir el objeto de datos del usuario a enviar en la solicitud
                 var userData = new { name, job };
-                // Convertir el objeto a JSON
                 var jsonUserData = JsonSerializer.Serialize(userData);
-                // Crear una solicitud HTTP POST con los datos del usuario
                 var requestContent = new StringContent(jsonUserData, Encoding.UTF8, "application/json");
-                
-                // Enviar la solicitud HTTP POST a la API
                 HttpResponseMessage response = await httpClient.PostAsync(requestUrl, requestContent);
+
                 if (response.IsSuccessStatusCode)
                 {
-                    // Leer la respuesta de la API
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    // Deserializar la respuesta JSON
-                    apiResponse = JsonSerializer.Deserialize<ApiResponse>(responseBody);
+                    var responseBody = await response.Content.ReadFromJsonAsync<ApiResponse>();
+
+                    apiResponse = responseBody ?? new ApiResponse();
+
                 }
                 else
                 {
@@ -64,8 +60,9 @@ namespace pc3.Integration
             public string Name { get; set; }
             public string Job { get; set; }
             public string Id { get; set; }
-            public DateTime CreatedAt { get; set; }
+            public string CreatedAt { get; set; } // Cambiado a string
         }
+
 
     }
 }

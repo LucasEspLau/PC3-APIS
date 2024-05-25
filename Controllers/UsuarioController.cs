@@ -58,7 +58,7 @@ namespace pc3.Controllers
                 if (response != null)
                 {
                     // Mostrar mensaje de confirmación
-                    TempData["SuccessMessage"] = "Usuario creado correctamente.";
+                    TempData["SuccessMessage"] = "Usuario "+response.Name+" creado correctamente, con el trabajo "+ response.Job+" y Id "+response.Id+" a las "+response.CreatedAt;
                 }
                 else
                 {
