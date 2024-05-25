@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using pc3.Integration.dto;
+
+
+namespace pc3.Integration
+{
+    public class ListarUnUsuarioApiIntegration
+    {
+        private readonly ILogger<ListarUnUsuarioApiIntegration> _logger;
+
+        private const string API_URL = "https://reqres.in/api/users/";
+        private readonly HttpClient httpClient;
+
+        public ListarUnUsuarioApiIntegration(ILogger<ListarUnUsuarioApiIntegration> logger)
+        {
+            _logger = logger;
+            httpClient = new HttpClient();
+
+        }
+
+        public async Task<Usuario> GetAllUser(int Id)
+        {
+
+            string requestUrl = API_URL;
+            Usuario listado = new Usuario();
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(requestUrl);
+                if (response.IsSuccessStatusCode)
+                {
+
+                }
+            }
+            catch(Exception ex){
+                _logger.LogDebug($"Error al llamar a la API: {ex.Message}");
+            }
+            return listado;
+
+        }
+    }
+}
