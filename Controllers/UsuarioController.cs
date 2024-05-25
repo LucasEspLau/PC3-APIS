@@ -14,12 +14,15 @@ namespace pc3.Controllers
     {
         private readonly ILogger<UsuarioController> _logger;
         private readonly ListarUsuariosApiIntegration _listUsers;
+        private readonly ListarUnUsuarioApiIntegration _unUser;
 
         public UsuarioController(ILogger<UsuarioController> logger,
-        ListarUsuariosApiIntegration listUsers)
+        ListarUsuariosApiIntegration listUsers,
+        ListarUnUsuarioApiIntegration unUser)
         {
             _logger = logger;
             _listUsers = listUsers;
+            _unUser = unUser;
         }
 
         [HttpGet]
@@ -27,6 +30,13 @@ namespace pc3.Controllers
         {
             List<Usuario> users = await _listUsers.GetAllUser();
             return View(users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Perfil(int Id)
+        {
+            Usuario user = await _unUser.GetUser(Id);
+            return View(user);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
