@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using pc3.Integration.dto;
 
-public class ApiResponse
+class ApiResponse
 {
     public int Page { get; set; }
     public int PerPage { get; set; }
@@ -14,7 +14,7 @@ public class ApiResponse
     public Support Support { get; set; }
 }
 
-public class Support
+class Support
 {
     public string Url { get; set; }
     public string Text { get; set; }
