@@ -4,21 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using pc3.Integration.dto;
 
-class ApiResponse
-{
-    public int Page { get; set; }
-    public int PerPage { get; set; }
-    public int Total { get; set; }
-    public int TotalPages { get; set; }
-    public List<Usuario> Data { get; set; }
-    public Support Support { get; set; }
-}
 
-class Support
-{
-    public string Url { get; set; }
-    public string Text { get; set; }
-}
 
 namespace pc3.Integration
 {
@@ -59,5 +45,15 @@ namespace pc3.Integration
             return listado;
 
         }
+        class ApiResponse
+        {
+            public int Page { get; set; }
+            public int PerPage { get; set; }
+            public int Total { get; set; }
+            public int TotalPages { get; set; }
+            public List<Usuario> Data { get; set; }
+            public Support Support { get; set; }
+        }
+
     }
 }
