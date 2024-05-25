@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace pc3.Integration.dto
@@ -9,8 +10,11 @@ namespace pc3.Integration.dto
     {
         public int Id { get; set; }
         public string? Email { get; set; }
-        public string? Nombre { get; set; }
-        public string? Apellido { get; set; }
+        [JsonPropertyName("first_name")]
+        public string Nombre { get; set; }
+
+        [JsonPropertyName("last_name")]
+        public string Apellido { get; set; }
         public string? Avatar { get; set; }
 
 
